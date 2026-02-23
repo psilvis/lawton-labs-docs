@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Chroma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #1f2937;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #2E5BFF 0%, #8B5CF6 100%);
+            border-radius: 16px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(46, 91, 255, 0.25);
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .last-updated {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 16px;
+        }
+
+        section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #374151;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #374151;
+        }
+
+        li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: #2E5BFF;
+            border-radius: 50%;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .highlight p {
+            margin: 0;
+            color: #92400e;
+            font-size: 14px;
+        }
+
+        a {
+            color: #2E5BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 48px;
+        }
+
+        footer p {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .nav-links {
+            margin-top: 16px;
+        }
+
+        .nav-links a {
+            color: #64748b;
+            margin: 0 12px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 24px 16px 60px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <h1>Terms of Service</h1>
+            <p class="subtitle">Chroma Health App</p>
+            <span class="last-updated">Last updated: February 22, 2025</span>
+        </header>
+
+        <section>
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading, installing, or using Chroma ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the App.</p>
+        </section>
+
+        <section>
+            <h2>2. Description of Service</h2>
+            <p>Chroma is a personal health tracking application that aggregates health data from multiple sources including Apple HealthKit, Strava, and manually entered lab reports. The App calculates a composite Balance Score and helps you track supplement protocols, biomarkers, and fitness metrics.</p>
+        </section>
+
+        <section>
+            <h2>3. Not Medical Advice</h2>
+            <div class="highlight">
+                <p><strong>Important:</strong> The App is designed for informational and wellness tracking purposes only. Nothing in the App constitutes medical advice, diagnosis, or treatment.</p>
+            </div>
+            <p>The Balance Score, biomarker analysis, and any other data presented are not substitutes for professional medical consultation. Always consult a qualified healthcare provider before making decisions about your health, medications, or supplement protocols.</p>
+        </section>
+
+        <section>
+            <h2>4. User Accounts and Data</h2>
+            <p>You are responsible for the accuracy of any data you input into the App, including lab results and supplement information. Your health data is stored locally on your device using encrypted storage (expo-secure-store). You may export or delete your data at any time from the Profile screen.</p>
+        </section>
+
+        <section>
+            <h2>5. Third-Party Services</h2>
+            <p>The App integrates with the following third-party services. Your use of these integrations is subject to each service's own terms:</p>
+            <ul>
+                <li><strong>Apple HealthKit</strong> — Health and fitness data is read with your explicit permission. This data stays on your device and is not transmitted to external servers.</li>
+                <li><strong>Strava</strong> — Activity data is accessed via OAuth 2.0 with PKCE authentication. Only activity data you authorize is retrieved.</li>
+                <li><strong>OpenAI</strong> — When you import a lab report and choose AI parsing, your lab report PDF is sent to OpenAI's API for AI-powered biomarker extraction. See our <a href="privacy-policy.html">Privacy Policy</a> for details on how this data is handled.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>6. Lab Report Processing</h2>
+            <p>When you import a lab report, the App uses two methods to extract biomarker data:</p>
+            <ul>
+                <li><strong>Local parsing</strong> — A regex-based parser runs entirely on your device with no external data transmission.</li>
+                <li><strong>AI-powered parsing</strong> — Your lab report PDF is sent to OpenAI's API for more accurate extraction. OpenAI processes this data according to its own API Terms of Use and Privacy Policy. The local parser is available as a fallback if AI parsing fails.</li>
+            </ul>
+            <p>When importing a lab report PDF, you are presented with a consent dialog before any data is sent. If you do not wish to share lab data with OpenAI, you can use the "Paste Results" option instead, which parses entirely on-device.</p>
+        </section>
+
+        <section>
+            <h2>7. Intellectual Property</h2>
+            <p>The App, including its design, code, and content, is the property of Lawton Labs and is protected by applicable intellectual property laws. You are granted a limited, non-exclusive, non-transferable license to use the App for personal, non-commercial purposes.</p>
+        </section>
+
+        <section>
+            <h2>8. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by applicable law, Lawton Labs shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, health outcomes, or any decisions made based on information provided by the App. The App is provided "as is" without warranties of any kind, either express or implied.</p>
+        </section>
+
+        <section>
+            <h2>9. Data Accuracy</h2>
+            <p>While the App strives for accuracy in parsing lab reports and calculating health metrics, we do not guarantee the accuracy, completeness, or reliability of any data processed by the App. AI-powered lab parsing may occasionally misinterpret values or miss biomarkers. Always verify parsed results against your original lab report.</p>
+        </section>
+
+        <section>
+            <h2>10. Changes to Terms</h2>
+            <p>We reserve the right to modify these Terms at any time. Continued use of the App after changes constitutes acceptance of the updated Terms. We will notify you of material changes through the App.</p>
+        </section>
+
+        <section>
+            <h2>11. Termination</h2>
+            <p>You may stop using the App at any time. You can delete all your data from the Profile screen. We reserve the right to terminate or suspend access to the App for violations of these Terms.</p>
+        </section>
+
+        <section>
+            <h2>12. Contact</h2>
+            <p>For questions about these Terms, please contact us at <a href="mailto:lawtonlabsapps@gmail.com">lawtonlabsapps@gmail.com</a>.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Lawton Labs. All rights reserved.</p>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
