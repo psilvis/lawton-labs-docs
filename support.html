@@ -36,19 +36,18 @@
         .logo {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #2E5BFF 0%, #8B5CF6 100%);
             border-radius: 20px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0 auto 16px;
             box-shadow: 0 8px 32px rgba(46, 91, 255, 0.35);
         }
 
-        .logo svg {
-            width: 40px;
-            height: 40px;
-            fill: white;
+        .app-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
         }
 
         h1 {
@@ -237,11 +236,8 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-            </div>
+            <img src="icon.png" alt="Chroma" class="logo">
+            <p class="app-name">Chroma</p>
             <h1>Get Support</h1>
             <p class="subtitle">We're here to help with any questions or issues</p>
         </header>
