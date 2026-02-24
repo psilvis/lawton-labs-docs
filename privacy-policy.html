@@ -195,12 +195,12 @@
             <img src="icon.png" alt="Chroma" class="logo">
             <p class="app-name">Chroma</p>
             <h1>Privacy Policy</h1>
-            <span class="last-updated">Last updated: February 22, 2025</span>
+            <span class="last-updated">Last updated: February 24, 2025</span>
         </header>
 
         <section>
             <h2>1. Overview</h2>
-            <p>Chroma ("the App") is built with a privacy-first approach. The majority of your health data is stored locally on your device using encrypted storage and is never transmitted to our servers. However, certain features involve third-party services as described below.</p>
+            <p>Chroma ("the App") is built with a privacy-first approach. Your health data is stored securely on your device and synced via Apple's iCloud service using CloudKit. Your data is never stored on Lawton Labs servers. Certain features involve third-party services as described below.</p>
         </section>
 
         <section>
@@ -215,7 +215,7 @@
                 <li><strong>Mood check-ins</strong> — Daily mood and stress ratings you record.</li>
             </ul>
             <div class="highlight">
-                <p>All of the above is stored on-device using AES-256 encryption via expo-secure-store. We do not operate backend servers that store your health data.</p>
+                <p>All of the above is encrypted on-device and synced securely via Apple iCloud (CloudKit). Your data is stored in your personal iCloud account and is never stored on Lawton Labs servers.</p>
             </div>
         </section>
 
@@ -240,7 +240,7 @@
             <ul>
                 <li>Data is only accessed after you grant explicit permission.</li>
                 <li>HealthKit data is read only — the App does not write data to HealthKit.</li>
-                <li>HealthKit data is stored locally and is never transmitted to external servers or third parties.</li>
+                <li>HealthKit data is synced via your personal iCloud account using Apple's CloudKit. This data is stored in your private iCloud container and is never stored on Lawton Labs servers or transmitted to third parties.</li>
                 <li>HealthKit data is never used for advertising or marketing purposes.</li>
             </ul>
         </section>
@@ -261,7 +261,7 @@
             <ul>
                 <li>Sensitive data (API keys, tokens, health data) is stored using expo-secure-store, which uses the iOS Keychain for encrypted storage.</li>
                 <li>Health metrics stored in SQLite are encrypted with application-layer AES-256-GCM. The encryption key is stored in the iOS Keychain.</li>
-                <li>No health data is stored on remote servers operated by Lawton Labs.</li>
+                <li>Your data syncs to your personal iCloud account via Apple's CloudKit. This data is stored in a private CloudKit container accessible only to you. No health data is stored on servers operated by Lawton Labs.</li>
                 <li>Data export is available in JSON format from the Profile screen.</li>
             </ul>
         </section>
@@ -269,9 +269,9 @@
         <section>
             <h2>7. Data Retention and Deletion</h2>
             <ul>
-                <li>All data is stored on your device and persists until you delete it.</li>
-                <li>You can delete all data at any time using the "Delete All Data" option on the Profile screen.</li>
-                <li>Uninstalling the App removes all locally stored data.</li>
+                <li>All data is stored on your device and synced to your personal iCloud account. Data persists until you delete it.</li>
+                <li>You can delete all data at any time using the "Delete All Data" option on the Profile screen. This removes data from your device and iCloud.</li>
+                <li>Uninstalling the App removes all locally stored data. Data in your iCloud account may persist until deleted via the App or iCloud settings.</li>
                 <li>Data sent to OpenAI for lab parsing is processed transiently and is not retained by OpenAI for model training purposes, per OpenAI's API data usage policies.</li>
             </ul>
         </section>
