@@ -195,126 +195,191 @@
             <img src="icon.png" alt="Gradual" class="logo">
             <p class="app-name">Gradual</p>
             <h1>Privacy Policy</h1>
-            <span class="last-updated">Last updated: February 26, 2025</span>
+            <span class="last-updated">Last updated: March 14, 2026</span>
         </header>
 
         <section>
             <h2>1. Overview</h2>
-            <p>Gradual ("the App") is built with a privacy-first approach. Your health data is stored securely on your device and synced via Apple's iCloud service using CloudKit. Your data is never stored on Lawton Labs servers. Certain features involve third-party services as described below.</p>
-        </section>
-
-        <section>
-            <h2>2. Data We Collect</h2>
-            <p>The App collects and stores the following data locally on your device:</p>
-            <ul>
-                <li><strong>Profile information</strong> — Your name and preferences entered during onboarding.</li>
-                <li><strong>Health metrics</strong> — Data from Apple HealthKit (steps, heart rate, HRV, sleep, VO2max, and other metrics) with your explicit permission.</li>
-                <li><strong>Activity data</strong> — Workout and activity information from Strava.</li>
-                <li><strong>Lab results</strong> — Biomarker values extracted from lab reports you import.</li>
-                <li><strong>Supplement protocols</strong> — Supplements, dosages, and adherence logs you create.</li>
-                <li><strong>Mood check-ins</strong> — Daily mood and stress ratings you record.</li>
-            </ul>
+            <p>Gradual ("the App") is operated by Lawton Labs ("we," "us," or "our"). The App is built with a privacy-first approach. Your health data is stored securely on your device and synced via Apple's iCloud service using CloudKit. Your data is never stored on Lawton Labs servers. Certain optional features involve third-party processing as described below.</p>
             <div class="highlight">
-                <p>All of the above is encrypted on-device and synced securely via Apple iCloud (CloudKit). Your data is stored in your personal iCloud account and is never stored on Lawton Labs servers.</p>
+                <p>This policy is designed to comply with the Washington My Health My Data Act (RCW 19.373). We collect consumer health data only with your separate, affirmative consent, which is obtained independently from any general terms acceptance.</p>
             </div>
         </section>
 
         <section>
-            <h2>3. Data Shared with Third Parties</h2>
-            <p><strong>OpenAI (Lab Report Processing)</strong></p>
-            <p>When you use the lab import feature and choose AI parsing, your lab report PDF is sent to OpenAI's API for AI-powered biomarker extraction. This means:</p>
+            <h2>2. Categories of Health Data Collected</h2>
+            <p>The App collects and stores the following categories of consumer health data on your device:</p>
             <ul>
-                <li>Your lab report PDF — which may include your name, biomarker values, reference ranges, lab name, and test dates — is transmitted to OpenAI's servers for processing.</li>
-                <li>OpenAI processes this data according to the OpenAI API Terms of Use and Privacy Policy.</li>
-                <li>Under OpenAI's API data usage policy, data sent via the API is not used to train OpenAI's models.</li>
-                <li>The data is transmitted via encrypted HTTPS connection.</li>
-                <li>No device identifiers or personal information beyond the report content are transmitted.</li>
-                <li>If the AI parser fails, the App falls back to a fully local regex-based parser that does not transmit any data.</li>
+                <li><strong>Physical activity data</strong> — Steps, distance, active energy, workout sessions, and exercise minutes.</li>
+                <li><strong>Cardiovascular metrics</strong> — Heart rate, resting heart rate, heart rate variability (HRV), VO2max.</li>
+                <li><strong>Sleep data</strong> — Sleep duration, sleep stages, and sleep quality scores.</li>
+                <li><strong>Body measurements</strong> — Height, weight, body fat percentage (when available via HealthKit).</li>
+                <li><strong>Lab biomarkers</strong> — Values extracted from lab reports you import (e.g., cholesterol, glucose, hormones, vitamins).</li>
+                <li><strong>Mood and well-being</strong> — Daily mood ratings and associated tags you record.</li>
+                <li><strong>Supplement and habit tracking</strong> — Supplements, dosages, habits, and adherence logs you create.</li>
+                <li><strong>Derived and inferred data</strong> — Gradual Age (composite biological age score), readiness scores, sleep quality scores, and AI-generated health insights. These are inferences drawn from your health data and are treated as consumer health data under this policy.</li>
             </ul>
-            <p>You can avoid sharing lab data with OpenAI by not using the PDF lab import feature. The "Paste Results" option uses an on-device parser that does not transmit any data.</p>
+            <p>The App also collects non-health data:</p>
+            <ul>
+                <li><strong>Profile information</strong> — Your name, age, and biological sex entered during onboarding.</li>
+                <li><strong>Apple Sign-In credentials</strong> — Apple user ID and email for authentication.</li>
+                <li><strong>Notification preferences</strong> — Your chosen reminder settings.</li>
+            </ul>
+            <div class="highlight">
+                <p>All health data listed above is encrypted on-device and synced securely via Apple iCloud (CloudKit). Your data is stored in your personal iCloud account and is never stored on Lawton Labs servers.</p>
+            </div>
         </section>
 
         <section>
-            <h2>4. Apple HealthKit Data</h2>
+            <h2>3. Categories of Sources</h2>
+            <p>Health data is collected from the following sources:</p>
+            <ul>
+                <li><strong>Apple HealthKit</strong> — Physical activity, cardiovascular, sleep, and body measurement data (with your explicit permission).</li>
+                <li><strong>Manual entry</strong> — Mood check-ins, supplement logs, habit tracking, and manually entered biomarkers.</li>
+                <li><strong>Imported lab reports</strong> — Biomarker values extracted from PDF lab reports you upload.</li>
+                <li><strong>Strava</strong> — Workout and activity data (when you connect your Strava account).</li>
+                <li><strong>AI inference</strong> — Derived scores and insights generated by analyzing your health data.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. Purpose of Collection</h2>
+            <p>We collect consumer health data for the following purposes:</p>
+            <ul>
+                <li><strong>Personalized health tracking</strong> — Displaying your health metrics, trends, and progress over time.</li>
+                <li><strong>Biological age computation</strong> — Calculating your Gradual Age composite score across cardiovascular, strength, and recovery dimensions.</li>
+                <li><strong>AI-powered analysis</strong> — Generating personalized health insights and recommendations (optional, requires separate consent at point of use).</li>
+                <li><strong>Lab report parsing</strong> — Extracting biomarker values from uploaded lab reports (optional, requires separate consent at point of use).</li>
+                <li><strong>Habit and supplement tracking</strong> — Monitoring adherence and streaks for your protocols.</li>
+            </ul>
+            <p>We do not sell, rent, or share your health data for advertising, marketing, or any purpose unrelated to providing the App's features.</p>
+        </section>
+
+        <section>
+            <h2>5. Third-Party Processors</h2>
+            <p>The following third-party services may process your data:</p>
+
+            <p><strong>Apple iCloud (CloudKit)</strong></p>
+            <p>All health data is encrypted and synced to your personal iCloud account. Apple processes this data under your iCloud terms. Lawton Labs does not have server-side access to your iCloud data.</p>
+
+            <p><strong>OpenAI</strong></p>
+            <p>When you enable AI features, the following data may be sent to OpenAI's API:</p>
+            <ul>
+                <li><strong>AI Insights:</strong> Health metrics relevant to your current screen (e.g., sleep, heart rate, activity), your age range, and biological sex. No names, emails, or device identifiers are shared.</li>
+                <li><strong>Lab Import:</strong> Your lab report PDF, which may contain biomarker values and personal identifiers.</li>
+            </ul>
+            <p>Under OpenAI's API data usage policy, data sent via the API is not used to train OpenAI's models. Data is transmitted via encrypted HTTPS. A separate consent dialog is shown before any data is sent to OpenAI.</p>
+
+            <p><strong>Cloudflare</strong></p>
+            <p>API requests transit through Cloudflare's network. Request data is not stored by Cloudflare beyond transient processing.</p>
+
+            <p><strong>Amplitude</strong></p>
+            <p>Anonymous usage analytics only. No health data, biomarker values, or personally identifiable information is sent to Amplitude.</p>
+
+            <p><strong>RevenueCat</strong></p>
+            <p>Apple user ID and subscription status for managing in-app purchases. No health data is shared.</p>
+
+            <p><strong>Firebase Crashlytics</strong></p>
+            <p>Crash reports including device type, OS version, and stack traces. No health data is included in crash reports.</p>
+        </section>
+
+        <section>
+            <h2>6. Apple HealthKit Data</h2>
             <p>Health data accessed through Apple HealthKit is handled according to Apple's HealthKit guidelines:</p>
             <ul>
                 <li>Data is only accessed after you grant explicit permission.</li>
                 <li>HealthKit data is read only — the App does not write data to HealthKit.</li>
-                <li>HealthKit data is synced via your personal iCloud account using Apple's CloudKit. This data is stored in your private iCloud container and is never stored on Lawton Labs servers or transmitted to third parties.</li>
+                <li>HealthKit data is synced via your personal iCloud account using Apple's CloudKit. This data is stored in your private iCloud container and is never stored on Lawton Labs servers or transmitted to third parties (except as described in the AI features section above, with your separate consent).</li>
                 <li>HealthKit data is never used for advertising or marketing purposes.</li>
             </ul>
         </section>
 
         <section>
-            <h2>5. Strava Integration</h2>
+            <h2>7. Strava Integration</h2>
             <p>When you connect your Strava account:</p>
             <ul>
-                <li>Authentication uses OAuth 2.0 with PKCE — the App never sees or stores your Strava password.</li>
+                <li>Authentication uses OAuth 2.0 — the App never sees or stores your Strava password.</li>
                 <li>Only activity data (type, duration, distance, heart rate) is retrieved from Strava's API.</li>
-                <li>Retrieved activity data is cached locally on your device.</li>
-                <li>You can disconnect Strava at any time from the Profile screen.</li>
+                <li>Retrieved activity data is cached locally on your device for up to 7 days per Strava's API Agreement.</li>
+                <li>You can disconnect Strava at any time from the Profile screen. Disconnecting deletes all cached Strava data and derived metrics from your device.</li>
             </ul>
         </section>
 
         <section>
-            <h2>6. Data Storage and Security</h2>
+            <h2>8. Data Storage and Security</h2>
             <ul>
-                <li>Sensitive data (API keys, tokens, health data) is stored using expo-secure-store, which uses the iOS Keychain for encrypted storage.</li>
+                <li>Sensitive data (API keys, tokens) is stored using expo-secure-store, which uses the iOS Keychain for encrypted storage.</li>
                 <li>Health metrics stored in SQLite are encrypted with application-layer AES-256-GCM. The encryption key is stored in the iOS Keychain.</li>
                 <li>Your data syncs to your personal iCloud account via Apple's CloudKit. This data is stored in a private CloudKit container accessible only to you. No health data is stored on servers operated by Lawton Labs.</li>
-                <li>Data export is available in JSON format from the Profile screen.</li>
+                <li>Data export is available in JSON format from Settings &gt; Data &amp; Privacy.</li>
             </ul>
         </section>
 
         <section>
-            <h2>7. Data Retention and Deletion</h2>
+            <h2>9. Data Retention and Deletion</h2>
             <ul>
                 <li>All data is stored on your device and synced to your personal iCloud account. Data persists until you delete it.</li>
-                <li>You can delete all data at any time using the "Delete All Data" option on the Profile screen. This removes data from your device and iCloud.</li>
+                <li>You can delete all data at any time using the "Delete All Data" option in Settings. This removes data from your device and iCloud.</li>
                 <li>Uninstalling the App removes all locally stored data. Data in your iCloud account may persist until deleted via the App or iCloud settings.</li>
-                <li>Data sent to OpenAI for lab parsing is processed transiently and is not retained by OpenAI for model training purposes, per OpenAI's API data usage policies.</li>
+                <li>Data sent to OpenAI for AI features is processed transiently and is not retained by OpenAI for model training purposes, per OpenAI's API data usage policies.</li>
+                <li>Because Lawton Labs does not have server-side access to your health data, deletion is performed entirely through the App or your iCloud account settings.</li>
             </ul>
         </section>
 
         <section>
-            <h2>8. Children's Privacy</h2>
-            <p>The App is not intended for use by individuals under the age of 13. We do not knowingly collect personal information from children under 13.</p>
-        </section>
-
-        <section>
-            <h2>9. Analytics and Error Tracking</h2>
-            <p>The App uses the following services for analytics and error tracking:</p>
+            <h2>10. Consent and Withdrawal</h2>
+            <p>We obtain your consent for health data collection in the following ways:</p>
             <ul>
-                <li><strong>Amplitude</strong> — Anonymous usage analytics to help us understand how features are used and improve the App. No health data or personally identifiable information is sent to Amplitude.</li>
-                <li><strong>Sentry</strong> — Crash and error reporting to help us identify and fix bugs. Error reports may include device type, OS version, and stack traces, but do not include your health data.</li>
+                <li><strong>Health data collection consent</strong> — Obtained during onboarding via a separate, affirmative checkbox on the data sync screen, independent from any general terms acceptance.</li>
+                <li><strong>AI processing consent</strong> — Obtained at point of use via a consent dialog each time data would be sent to OpenAI (for AI Insights or lab report parsing). This consent names the third party, describes what data is shared, and explains how to withdraw.</li>
             </ul>
-            <p>Neither service receives your health data, biomarkers, or personally identifiable health information.</p>
-        </section>
-
-        <section>
-            <h2>10. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of material changes through the App. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+            <p><strong>How to withdraw consent:</strong></p>
+            <ul>
+                <li><strong>AI Processing:</strong> Disable AI Insights in Settings &gt; Data &amp; Privacy &gt; Manage Consent, or toggle it off in the Manage Consent screen within the App.</li>
+                <li><strong>Health data collection:</strong> Use "Delete All Data" in Settings to remove all health data from your device and iCloud. Because health data collection is required to provide the App's core functionality, withdrawing this consent requires deleting your data.</li>
+                <li><strong>By email:</strong> Send a withdrawal request to <a href="mailto:privacy@gradual.health">privacy@gradual.health</a>.</li>
+            </ul>
         </section>
 
         <section>
             <h2>11. Your Rights</h2>
-            <p>You have the right to:</p>
+            <p>Under applicable law, including the Washington My Health My Data Act, you have the right to:</p>
             <ul>
-                <li>Access all your data stored in the App.</li>
-                <li>Export your data in a portable format (JSON).</li>
-                <li>Delete all your data at any time.</li>
-                <li>Disconnect any third-party service at any time.</li>
-                <li>Choose not to use features that involve third-party data processing (lab import).</li>
+                <li><strong>Access</strong> — Export your complete health data as JSON anytime using the Export Health Data feature in Settings &gt; Data &amp; Privacy.</li>
+                <li><strong>Delete</strong> — Remove all health data from your device and iCloud using the Delete All Data feature in Settings. Because Lawton Labs does not have server-side access to your health data, we cannot delete data on your behalf — deletion is performed through the App or your iCloud account.</li>
+                <li><strong>Withdraw consent</strong> — Manage your consent preferences in the App (Settings &gt; Data &amp; Privacy &gt; Manage Consent) or by emailing us.</li>
+                <li><strong>Disconnect third-party services</strong> — Disconnect Strava or disable AI features at any time.</li>
+                <li><strong>Non-discrimination</strong> — We will not discriminate against you for exercising any of these rights.</li>
+            </ul>
+
+            <p><strong>How to submit a request:</strong></p>
+            <p>For access, deletion, or any other privacy-related request, email <a href="mailto:privacy@gradual.health">privacy@gradual.health</a>. We will respond within <strong>45 calendar days</strong> of receiving your request.</p>
+
+            <p><strong>Appeals:</strong></p>
+            <p>If your request is denied, you may appeal by emailing <a href="mailto:privacy@gradual.health">privacy@gradual.health</a> with the subject line "Privacy Request Appeal." If your appeal is denied, you may file a complaint with the Washington State Attorney General:</p>
+            <ul>
+                <li>Online: <a href="https://www.atg.wa.gov/file-complaint">www.atg.wa.gov/file-complaint</a></li>
+                <li>Mail: 1125 Washington St SE, PO Box 40100, Olympia, WA 98504</li>
             </ul>
         </section>
 
         <section>
-            <h2>12. Contact</h2>
-            <p>For questions about this Privacy Policy or your data, please contact us at <a href="mailto:lawtonlabsapps@gmail.com">lawtonlabsapps@gmail.com</a>.</p>
+            <h2>12. Children's Privacy</h2>
+            <p>The App is not intended for use by individuals under the age of 13. We do not knowingly collect personal information from children under 13.</p>
+        </section>
+
+        <section>
+            <h2>13. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of material changes through the App. For changes that materially affect how we collect, use, or share your consumer health data, we will obtain your consent before the changes take effect.</p>
+        </section>
+
+        <section>
+            <h2>14. Contact</h2>
+            <p>For questions about this Privacy Policy, your data, or to exercise any of your rights, please contact us at <a href="mailto:privacy@gradual.health">privacy@gradual.health</a>.</p>
         </section>
 
         <footer>
-            <p>&copy; 2025 Lawton Labs. All rights reserved.</p>
+            <p>&copy; 2026 Lawton Labs. All rights reserved.</p>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="terms-of-service.html">Terms of Service</a>
