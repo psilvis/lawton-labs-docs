@@ -74,6 +74,36 @@
             margin-top: 16px;
         }
 
+        .region-selector {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .region-btn {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+            background: white;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .region-btn:hover {
+            border-color: #2E5BFF;
+            color: #2E5BFF;
+        }
+
+        .region-btn.active {
+            background: #2E5BFF;
+            border-color: #2E5BFF;
+            color: white;
+        }
+
         section {
             background: white;
             border-radius: 12px;
@@ -174,6 +204,22 @@
             font-size: 14px;
         }
 
+        .region-only {
+            display: none;
+        }
+
+        .region-only.visible {
+            display: block;
+        }
+
+        .region-inline {
+            display: none;
+        }
+
+        .region-inline.visible {
+            display: inline;
+        }
+
         @media (max-width: 640px) {
             .container {
                 padding: 24px 16px 60px;
@@ -195,20 +241,31 @@
             <img src="icon.png" alt="Gradual" class="logo">
             <p class="app-name">Gradual</p>
             <h1>Privacy Policy</h1>
-            <span class="last-updated">Last updated: March 14, 2026</span>
+            <span class="last-updated">Last updated: March 17, 2026</span>
+            <div class="region-selector">
+                <button class="region-btn active" data-region="US">United States</button>
+                <button class="region-btn" data-region="CA">Canada</button>
+                <button class="region-btn" data-region="GB">United Kingdom</button>
+            </div>
         </header>
 
         <section>
             <h2>1. Overview</h2>
             <p>Gradual ("the App") is operated by Lawton Labs ("we," "us," or "our"). The App is built with a privacy-first approach. Your health data is stored securely on your device and synced via Apple's iCloud service using CloudKit. Your data is never stored on Lawton Labs servers. Certain optional features involve third-party processing as described below.</p>
-            <div class="highlight">
+            <div class="highlight region-only visible" data-region="US">
                 <p>This policy is designed to comply with the Washington My Health My Data Act (RCW 19.373). We collect consumer health data only with your separate, affirmative consent, which is obtained independently from any general terms acceptance.</p>
+            </div>
+            <div class="highlight region-only" data-region="CA">
+                <p>This policy is designed to comply with the Personal Information Protection and Electronic Documents Act (PIPEDA). We collect personal information only with your knowledge and consent, and for purposes that a reasonable person would consider appropriate.</p>
+            </div>
+            <div class="highlight region-only" data-region="GB">
+                <p>This policy is designed to comply with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. Lawton Labs is the data controller for your personal data. We process your data lawfully, fairly, and transparently.</p>
             </div>
         </section>
 
         <section>
             <h2>2. Categories of Health Data Collected</h2>
-            <p>The App collects and stores the following categories of consumer health data on your device:</p>
+            <p>The App collects and stores the following categories of <span class="region-inline visible" data-region="US">consumer health </span><span class="region-inline" data-region="CA">personal </span><span class="region-inline" data-region="GB">personal </span>data on your device:</p>
             <ul>
                 <li><strong>Physical activity data</strong> — Steps, distance, active energy, workout sessions, and exercise minutes.</li>
                 <li><strong>Cardiovascular metrics</strong> — Heart rate, resting heart rate, heart rate variability (HRV), VO2max.</li>
@@ -217,7 +274,7 @@
                 <li><strong>Lab biomarkers</strong> — Values extracted from lab reports you import (e.g., cholesterol, glucose, hormones, vitamins).</li>
                 <li><strong>Mood and well-being</strong> — Daily mood ratings and associated tags you record.</li>
                 <li><strong>Supplement and habit tracking</strong> — Supplements, dosages, habits, and adherence logs you create.</li>
-                <li><strong>Derived and inferred data</strong> — Gradual Age (composite biological age score), readiness scores, sleep quality scores, and AI-generated health insights. These are inferences drawn from your health data and are treated as consumer health data under this policy.</li>
+                <li><strong>Derived and inferred data</strong> — Gradual Age (composite biological age score), readiness scores, sleep quality scores, and AI-generated health insights. These are inferences drawn from your health data and are treated as <span class="region-inline visible" data-region="US">consumer health data</span><span class="region-inline" data-region="CA">personal information</span><span class="region-inline" data-region="GB">personal data</span> under this policy.</li>
             </ul>
             <p>The App also collects non-health data:</p>
             <ul>
@@ -244,7 +301,7 @@
 
         <section>
             <h2>4. Purpose of Collection</h2>
-            <p>We collect consumer health data for the following purposes:</p>
+            <p>We collect <span class="region-inline visible" data-region="US">consumer health data</span><span class="region-inline" data-region="CA">personal information</span><span class="region-inline" data-region="GB">personal data</span> for the following purposes:</p>
             <ul>
                 <li><strong>Personalized health tracking</strong> — Displaying your health metrics, trends, and progress over time.</li>
                 <li><strong>Biological age computation</strong> — Calculating your Gradual Age composite score across cardiovascular, strength, and recovery dimensions.</li>
@@ -281,6 +338,19 @@
 
             <p><strong>Firebase Crashlytics</strong></p>
             <p>Crash reports including device type, OS version, and stack traces. No health data is included in crash reports.</p>
+        </section>
+
+        <!-- Canada: Cross-Border Data Transfers -->
+        <section class="region-only" data-region="CA">
+            <h2>5a. Cross-Border Data Transfers</h2>
+            <p>Under PIPEDA, we are required to inform you when your personal information may be transferred outside of Canada for processing:</p>
+            <ul>
+                <li><strong>OpenAI (United States)</strong> — When you use AI-powered features (lab parsing, AI Insights), your data is sent to OpenAI servers located in the United States.</li>
+                <li><strong>Amplitude (United States)</strong> — Anonymous usage analytics are processed in the United States.</li>
+                <li><strong>AppsFlyer (United States)</strong> — Install attribution data is processed in the United States.</li>
+                <li><strong>Apple iCloud</strong> — Your health data syncs via your personal iCloud account under Apple's terms. Apple may store iCloud data in various jurisdictions.</li>
+            </ul>
+            <p>These transfers are necessary to provide the App's core functionality and are made with your consent. While your information is in another jurisdiction, it may be subject to the laws of that jurisdiction.</p>
         </section>
 
         <section>
@@ -324,6 +394,27 @@
                 <li>Data sent to OpenAI for AI features is processed transiently and is not retained by OpenAI for model training purposes, per OpenAI's API data usage policies.</li>
                 <li>Because Lawton Labs does not have server-side access to your health data, deletion is performed entirely through the App or your iCloud account settings.</li>
             </ul>
+            <!-- UK: Additional retention details -->
+            <div class="region-only" data-region="GB" style="margin-top: 12px;">
+                <p><strong>Specific retention periods:</strong></p>
+                <ul>
+                    <li><strong>Health data</strong> — Retained on your device and iCloud for as long as you use the App.</li>
+                    <li><strong>Anonymous analytics</strong> — Retained by Amplitude for up to 2 years.</li>
+                    <li><strong>Crash reports</strong> — Retained by Firebase Crashlytics for up to 90 days.</li>
+                    <li><strong>AI-processed data</strong> — Not retained by OpenAI after processing is complete.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- UK: Legal Basis for Processing -->
+        <section class="region-only" data-region="GB">
+            <h2>9a. Legal Basis for Processing</h2>
+            <p>Under the UK GDPR, we process your personal data on the following legal bases:</p>
+            <ul>
+                <li><strong>Consent (Article 6(1)(a) and Article 9(2)(a))</strong> — Health data processing, HealthKit access, AI lab parsing, and AI Insights are based on your explicit consent, which you can withdraw at any time via Settings &gt; Data &amp; Privacy &gt; Manage Consent.</li>
+                <li><strong>Performance of a contract (Article 6(1)(b))</strong> — Account management, subscription processing, and core app functionality are necessary to provide the service you signed up for.</li>
+                <li><strong>Legitimate interests (Article 6(1)(f))</strong> — Anonymous analytics and crash reporting help us improve app stability and user experience. We have assessed that these interests do not override your rights given the data is fully anonymized.</li>
+            </ul>
         </section>
 
         <section>
@@ -343,7 +434,9 @@
 
         <section>
             <h2>11. Your Rights</h2>
-            <p>Under applicable law, including the Washington My Health My Data Act, you have the right to:</p>
+            <p class="region-only visible" data-region="US">Under applicable law, including the Washington My Health My Data Act, you have the right to:</p>
+            <p class="region-only" data-region="CA">Under the Personal Information Protection and Electronic Documents Act (PIPEDA), you have the right to:</p>
+            <p class="region-only" data-region="GB">Under the UK GDPR, you have the right to:</p>
             <ul>
                 <li><strong>Access</strong> — Export your complete health data as JSON anytime using the Export Health Data feature in Settings &gt; Data &amp; Privacy.</li>
                 <li><strong>Delete</strong> — Remove all health data from your device and iCloud using the Delete All Data feature in Settings. Because Lawton Labs does not have server-side access to your health data, we cannot delete data on your behalf — deletion is performed through the App or your iCloud account.</li>
@@ -352,25 +445,69 @@
                 <li><strong>Non-discrimination</strong> — We will not discriminate against you for exercising any of these rights.</li>
             </ul>
 
+            <!-- Canada: Additional PIPEDA rights -->
+            <div class="region-only" data-region="CA">
+                <p><strong>Additional rights under PIPEDA:</strong></p>
+                <ul>
+                    <li><strong>Challenge accuracy</strong> — You may challenge the accuracy and completeness of your personal information held by us and request amendments.</li>
+                    <li><strong>Know about cross-border transfers</strong> — You have the right to know when your personal information is transferred outside of Canada (see Section 5a).</li>
+                </ul>
+            </div>
+
+            <!-- UK: Additional UK GDPR rights -->
+            <div class="region-only" data-region="GB">
+                <p><strong>Additional rights under the UK GDPR:</strong></p>
+                <ul>
+                    <li><strong>Data portability</strong> — You have the right to receive your personal data in a structured, commonly used, machine-readable format (JSON). Use the Export Health Data feature to exercise this right.</li>
+                    <li><strong>Rectification</strong> — You have the right to request correction of inaccurate personal data.</li>
+                    <li><strong>Restriction of processing</strong> — You have the right to request restriction of processing in certain circumstances.</li>
+                    <li><strong>Object to processing</strong> — You have the right to object to processing based on legitimate interests.</li>
+                </ul>
+            </div>
+
             <p><strong>How to submit a request:</strong></p>
-            <p>For access, deletion, or any other privacy-related request, email <a href="mailto:privacy@gradual.health">privacy@gradual.health</a>. We will respond within <strong>45 calendar days</strong> of receiving your request.</p>
+            <p>For access, deletion, or any other privacy-related request, email <a href="mailto:privacy@gradual.health">privacy@gradual.health</a>. We will respond within <strong class="region-inline visible" data-region="US">45 calendar days</strong><strong class="region-inline" data-region="CA">30 calendar days</strong><strong class="region-inline" data-region="GB">30 calendar days</strong> of receiving your request.</p>
 
             <p><strong>Appeals:</strong></p>
-            <p>If your request is denied, you may appeal by emailing <a href="mailto:privacy@gradual.health">privacy@gradual.health</a> with the subject line "Privacy Request Appeal." If your appeal is denied, you may file a complaint with the Washington State Attorney General:</p>
-            <ul>
+            <p class="region-only visible" data-region="US">If your request is denied, you may appeal by emailing <a href="mailto:privacy@gradual.health">privacy@gradual.health</a> with the subject line "Privacy Request Appeal." If your appeal is denied, you may file a complaint with the Washington State Attorney General:</p>
+            <ul class="region-only visible" data-region="US">
                 <li>Online: <a href="https://www.atg.wa.gov/file-complaint">www.atg.wa.gov/file-complaint</a></li>
                 <li>Mail: 1125 Washington St SE, PO Box 40100, Olympia, WA 98504</li>
+            </ul>
+            <p class="region-only" data-region="CA">If your request is denied, you may appeal by emailing <a href="mailto:privacy@gradual.health">privacy@gradual.health</a> with the subject line "Privacy Request Appeal." If your appeal is denied, you may file a complaint with the Office of the Privacy Commissioner of Canada:</p>
+            <ul class="region-only" data-region="CA">
+                <li>Online: <a href="https://www.priv.gc.ca/en/report-a-concern/">www.priv.gc.ca/en/report-a-concern</a></li>
+                <li>Phone: 1-800-282-1376</li>
+            </ul>
+            <p class="region-only" data-region="GB">If your request is denied, you may appeal by emailing <a href="mailto:privacy@gradual.health">privacy@gradual.health</a> with the subject line "Privacy Request Appeal." If your appeal is denied, you have the right to lodge a complaint with the Information Commissioner's Office (ICO):</p>
+            <ul class="region-only" data-region="GB">
+                <li>Online: <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk/make-a-complaint</a></li>
+                <li>Phone: 0303 123 1113</li>
             </ul>
         </section>
 
         <section>
             <h2>12. Children's Privacy</h2>
-            <p>The App is not intended for use by individuals under the age of 13. We do not knowingly collect personal information from children under 13.</p>
+            <p>The App is not intended for use by individuals under the age of <span class="region-inline visible" data-region="US">13</span><span class="region-inline" data-region="CA">13</span><span class="region-inline" data-region="GB">13</span>. We do not knowingly collect personal information from children under <span class="region-inline visible" data-region="US">13</span><span class="region-inline" data-region="CA">13</span><span class="region-inline" data-region="GB">13</span>.</p>
+        </section>
+
+        <!-- Canada: Accountability (PIPEDA requirement) -->
+        <section class="region-only" data-region="CA">
+            <h2>12a. Accountability</h2>
+            <p>Lawton Labs is responsible for personal information under its control. Questions or concerns about our privacy practices may be directed to our privacy contact:</p>
+            <p><strong>Email:</strong> <a href="mailto:privacy@gradual.health">privacy@gradual.health</a></p>
+        </section>
+
+        <!-- UK: Data Controller (UK GDPR requirement) -->
+        <section class="region-only" data-region="GB">
+            <h2>12a. Data Controller</h2>
+            <p>The data controller for your personal data is:</p>
+            <p><strong>Lawton Labs</strong><br>Email: <a href="mailto:privacy@gradual.health">privacy@gradual.health</a></p>
         </section>
 
         <section>
             <h2>13. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of material changes through the App. For changes that materially affect how we collect, use, or share your consumer health data, we will obtain your consent before the changes take effect.</p>
+            <p>We may update this Privacy Policy from time to time. We will notify you of material changes through the App. For changes that materially affect how we collect, use, or share your <span class="region-inline visible" data-region="US">consumer health data</span><span class="region-inline" data-region="CA">personal information</span><span class="region-inline" data-region="GB">personal data</span>, we will obtain your consent before the changes take effect.</p>
         </section>
 
         <section>
@@ -386,5 +523,59 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        (function() {
+            // Detect region from browser timezone/locale
+            function detectRegion() {
+                try {
+                    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+                    if (tz.startsWith('America/Toronto') || tz.startsWith('America/Vancouver') ||
+                        tz.startsWith('America/Edmonton') || tz.startsWith('America/Winnipeg') ||
+                        tz.startsWith('America/Halifax') || tz.startsWith('America/St_Johns') ||
+                        tz.startsWith('America/Regina') || tz.startsWith('America/Moncton') ||
+                        tz.startsWith('America/Iqaluit') || tz.startsWith('America/Whitehorse') ||
+                        tz.startsWith('America/Yellowknife') || tz.startsWith('America/Dawson')) {
+                        return 'CA';
+                    }
+                    if (tz.startsWith('Europe/London')) {
+                        return 'GB';
+                    }
+                } catch(e) {}
+                return 'US';
+            }
+
+            var currentRegion = detectRegion();
+
+            function applyRegion(region) {
+                currentRegion = region;
+
+                // Update buttons
+                document.querySelectorAll('.region-btn').forEach(function(btn) {
+                    btn.classList.toggle('active', btn.getAttribute('data-region') === region);
+                });
+
+                // Update block-level region elements
+                document.querySelectorAll('.region-only').forEach(function(el) {
+                    el.classList.toggle('visible', el.getAttribute('data-region') === region);
+                });
+
+                // Update inline region elements
+                document.querySelectorAll('.region-inline').forEach(function(el) {
+                    el.classList.toggle('visible', el.getAttribute('data-region') === region);
+                });
+            }
+
+            // Set initial region
+            applyRegion(currentRegion);
+
+            // Bind button clicks
+            document.querySelectorAll('.region-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    applyRegion(this.getAttribute('data-region'));
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
