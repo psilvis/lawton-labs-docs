@@ -241,11 +241,13 @@
             <img src="icon.png" alt="Gradual" class="logo">
             <p class="app-name">Gradual</p>
             <h1>Privacy Policy</h1>
-            <span class="last-updated">Last updated: March 17, 2026</span>
+            <span class="last-updated">Last updated: March 20, 2026</span>
             <div class="region-selector">
                 <button class="region-btn active" data-region="US">United States</button>
                 <button class="region-btn" data-region="CA">Canada</button>
                 <button class="region-btn" data-region="GB">United Kingdom</button>
+                <button class="region-btn" data-region="JP">Japan</button>
+                <button class="region-btn" data-region="SG">Singapore</button>
             </div>
         </header>
 
@@ -261,11 +263,17 @@
             <div class="highlight region-only" data-region="GB">
                 <p>This policy is designed to comply with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. Lawton Labs is the data controller for your personal data. We process your data lawfully, fairly, and transparently.</p>
             </div>
+            <div class="highlight region-only" data-region="JP">
+                <p>This policy is designed to comply with Japan's Act on the Protection of Personal Information (APPI / 個人情報の保護に関する法律). We handle personal information appropriately and use it only for specified purposes with your consent.</p>
+            </div>
+            <div class="highlight region-only" data-region="SG">
+                <p>This policy is designed to comply with Singapore's Personal Data Protection Act 2012 (PDPA). We collect, use, and disclose personal data only with your consent and for purposes that a reasonable person would consider appropriate. A Data Protection Officer has been designated as required by the PDPA.</p>
+            </div>
         </section>
 
         <section>
             <h2>2. Categories of Health Data Collected</h2>
-            <p>The App collects and stores the following categories of <span class="region-inline visible" data-region="US">consumer health </span><span class="region-inline" data-region="CA">personal </span><span class="region-inline" data-region="GB">personal </span>data on your device:</p>
+            <p>The App collects and stores the following categories of <span class="region-inline visible" data-region="US">consumer health </span><span class="region-inline" data-region="CA">personal </span><span class="region-inline" data-region="GB">personal </span><span class="region-inline" data-region="JP">personal </span><span class="region-inline" data-region="SG">personal </span>data on your device:</p>
             <ul>
                 <li><strong>Physical activity data</strong> — Steps, distance, active energy, workout sessions, and exercise minutes.</li>
                 <li><strong>Cardiovascular metrics</strong> — Heart rate, resting heart rate, heart rate variability (HRV), VO2max.</li>
@@ -274,7 +282,7 @@
                 <li><strong>Lab biomarkers</strong> — Values extracted from lab reports you import (e.g., cholesterol, glucose, hormones, vitamins).</li>
                 <li><strong>Mood and well-being</strong> — Daily mood ratings and associated tags you record.</li>
                 <li><strong>Supplement and habit tracking</strong> — Supplements, dosages, habits, and adherence logs you create.</li>
-                <li><strong>Derived and inferred data</strong> — Gradual Age (composite biological age score), readiness scores, sleep quality scores, and AI-generated health insights. These are inferences drawn from your health data and are treated as <span class="region-inline visible" data-region="US">consumer health data</span><span class="region-inline" data-region="CA">personal information</span><span class="region-inline" data-region="GB">personal data</span> under this policy.</li>
+                <li><strong>Derived and inferred data</strong> — Gradual Age (composite biological age score), readiness scores, sleep quality scores, and AI-generated health insights. These are inferences drawn from your health data and are treated as <span class="region-inline visible" data-region="US">consumer health data</span><span class="region-inline" data-region="CA">personal information</span><span class="region-inline" data-region="GB">personal data</span><span class="region-inline" data-region="SG">personal data</span> under this policy.</li>
             </ul>
             <p>The App also collects non-health data:</p>
             <ul>
@@ -301,7 +309,7 @@
 
         <section>
             <h2>4. Purpose of Collection</h2>
-            <p>We collect <span class="region-inline visible" data-region="US">consumer health data</span><span class="region-inline" data-region="CA">personal information</span><span class="region-inline" data-region="GB">personal data</span> for the following purposes:</p>
+            <p>We collect <span class="region-inline visible" data-region="US">consumer health data</span><span class="region-inline" data-region="CA">personal information</span><span class="region-inline" data-region="GB">personal data</span><span class="region-inline" data-region="SG">personal data</span> for the following purposes:</p>
             <ul>
                 <li><strong>Personalized health tracking</strong> — Displaying your health metrics, trends, and progress over time.</li>
                 <li><strong>Biological age computation</strong> — Calculating your Gradual Age composite score across cardiovascular, strength, and recovery dimensions.</li>
@@ -351,6 +359,53 @@
                 <li><strong>Apple iCloud</strong> — Your health data syncs via your personal iCloud account under Apple's terms. Apple may store iCloud data in various jurisdictions.</li>
             </ul>
             <p>These transfers are necessary to provide the App's core functionality and are made with your consent. While your information is in another jurisdiction, it may be subject to the laws of that jurisdiction.</p>
+        </section>
+
+        <!-- Japan: Cross-Border Data Transfers (APPI requirement) -->
+        <section class="region-only" data-region="JP">
+            <h2>5b. Cross-Border Data Transfers</h2>
+            <p>Under APPI, we are required to inform you when your personal information may be transferred outside of Japan for processing:</p>
+            <ul>
+                <li><strong>OpenAI (United States)</strong> — When you use AI-powered features (lab parsing, AI Insights), your data is sent to OpenAI servers located in the United States.</li>
+                <li><strong>Amplitude (United States)</strong> — Anonymous usage analytics are processed in the United States.</li>
+                <li><strong>AppsFlyer (United States)</strong> — Install attribution data is processed in the United States.</li>
+                <li><strong>Apple iCloud</strong> — Your health data syncs via your personal iCloud account under Apple's terms. Apple may store iCloud data in various jurisdictions.</li>
+            </ul>
+            <p>These transfers are made with your consent. The United States does not have an equivalent level of personal information protection as Japan under APPI. We ensure appropriate measures are in place through contractual safeguards with each service provider.</p>
+        </section>
+
+        <!-- Japan: Purpose of Use (APPI requirement) -->
+        <section class="region-only" data-region="JP">
+            <h2>5c. Purpose of Use</h2>
+            <p>Under APPI, we specify the purposes for which we use your personal information:</p>
+            <ul>
+                <li><strong>Health data</strong> — To calculate vitality scores, track health trends, generate personalized insights, and provide the App's core health tracking functionality.</li>
+                <li><strong>Lab report data</strong> — To extract biomarker values for tracking and analysis within the App.</li>
+                <li><strong>Account information</strong> — To provide authentication, subscription management, and data synchronization.</li>
+                <li><strong>Usage analytics</strong> — To improve the App experience. No health data or personally identifiable information is included.</li>
+                <li><strong>Attribution data</strong> — To understand how users discover Gradual and to credit referrals.</li>
+            </ul>
+            <p>Your data will not be used for any purpose beyond those stated above without obtaining your prior consent.</p>
+        </section>
+
+        <!-- Singapore: Cross-Border Data Transfers (PDPA requirement) -->
+        <section class="region-only" data-region="SG">
+            <h2>5d. Cross-Border Data Transfers</h2>
+            <p>Under the PDPA, we are required to inform you when your personal data may be transferred outside of Singapore for processing:</p>
+            <ul>
+                <li><strong>OpenAI (United States)</strong> — When you use AI-powered features (lab parsing, AI Insights), your data is sent to OpenAI servers located in the United States.</li>
+                <li><strong>Amplitude (United States)</strong> — Anonymous usage analytics are processed in the United States.</li>
+                <li><strong>AppsFlyer (United States)</strong> — Install attribution data is processed in the United States.</li>
+                <li><strong>Apple iCloud</strong> — Your health data syncs via your personal iCloud account under Apple's terms. Apple may store iCloud data in various jurisdictions.</li>
+            </ul>
+            <p>These transfers are made with your consent. We ensure that recipients of your personal data provide a standard of protection comparable to the PDPA through contractual safeguards with each service provider.</p>
+        </section>
+
+        <!-- Singapore: Data Protection Officer (PDPA requirement) -->
+        <section class="region-only" data-region="SG">
+            <h2>5e. Data Protection Officer</h2>
+            <p>As required by the PDPA, Lawton Labs has designated a Data Protection Officer (DPO) responsible for ensuring compliance with the PDPA. You may contact our DPO for any questions, concerns, or requests regarding your personal data:</p>
+            <p><strong>Data Protection Officer</strong><br>Email: <a href="mailto:dpo@gradual.health">dpo@gradual.health</a></p>
         </section>
 
         <section>
@@ -437,6 +492,8 @@
             <p class="region-only visible" data-region="US">Under applicable law, including the Washington My Health My Data Act, you have the right to:</p>
             <p class="region-only" data-region="CA">Under the Personal Information Protection and Electronic Documents Act (PIPEDA), you have the right to:</p>
             <p class="region-only" data-region="GB">Under the UK GDPR, you have the right to:</p>
+            <p class="region-only" data-region="JP">Under Japan's Act on the Protection of Personal Information (APPI), you have the right to:</p>
+            <p class="region-only" data-region="SG">Under Singapore's Personal Data Protection Act (PDPA), you have the right to:</p>
             <ul>
                 <li><strong>Access</strong> — Export your complete health data as JSON anytime using the Export Health Data feature in Settings &gt; Data &amp; Privacy.</li>
                 <li><strong>Delete</strong> — Remove all health data from your device and iCloud using the Delete All Data feature in Settings. Because Lawton Labs does not have server-side access to your health data, we cannot delete data on your behalf — deletion is performed through the App or your iCloud account.</li>
@@ -454,6 +511,17 @@
                 </ul>
             </div>
 
+            <!-- Japan: Additional APPI rights -->
+            <div class="region-only" data-region="JP">
+                <p><strong>Additional rights under APPI:</strong></p>
+                <ul>
+                    <li><strong>Disclosure</strong> — You have the right to request disclosure of your retained personal data.</li>
+                    <li><strong>Correction</strong> — You have the right to request correction, addition, or deletion of your personal data if it is inaccurate.</li>
+                    <li><strong>Cessation of use</strong> — You have the right to request that we cease using or delete your personal data if it was obtained improperly or is no longer needed for the stated purpose.</li>
+                    <li><strong>Cessation of third-party provision</strong> — You have the right to request that we cease providing your personal data to third parties.</li>
+                </ul>
+            </div>
+
             <!-- UK: Additional UK GDPR rights -->
             <div class="region-only" data-region="GB">
                 <p><strong>Additional rights under the UK GDPR:</strong></p>
@@ -465,8 +533,18 @@
                 </ul>
             </div>
 
+            <!-- Singapore: Additional PDPA rights -->
+            <div class="region-only" data-region="SG">
+                <p><strong>Additional rights under the PDPA:</strong></p>
+                <ul>
+                    <li><strong>Access</strong> — You have the right to request access to your personal data held by us and information about how it has been used or disclosed in the past year.</li>
+                    <li><strong>Correction</strong> — You have the right to request correction of any errors or omissions in your personal data.</li>
+                    <li><strong>Data portability</strong> — You have the right to request that we transmit your data to another organization in a commonly used machine-readable format.</li>
+                </ul>
+            </div>
+
             <p><strong>How to submit a request:</strong></p>
-            <p>For access, deletion, or any other privacy-related request, email <a href="mailto:privacy@gradual.health">privacy@gradual.health</a>. We will respond within <strong class="region-inline visible" data-region="US">45 calendar days</strong><strong class="region-inline" data-region="CA">30 calendar days</strong><strong class="region-inline" data-region="GB">30 calendar days</strong> of receiving your request.</p>
+            <p>For access, deletion, or any other privacy-related request, email <a href="mailto:privacy@gradual.health">privacy@gradual.health</a>. We will respond within <strong class="region-inline visible" data-region="US">45 calendar days</strong><strong class="region-inline" data-region="CA">30 calendar days</strong><strong class="region-inline" data-region="GB">30 calendar days</strong><strong class="region-inline" data-region="JP">30 calendar days</strong><strong class="region-inline" data-region="SG">30 calendar days</strong> of receiving your request.</p>
 
             <p><strong>Appeals:</strong></p>
             <p class="region-only visible" data-region="US">If your request is denied, you may appeal by emailing <a href="mailto:privacy@gradual.health">privacy@gradual.health</a> with the subject line "Privacy Request Appeal." If your appeal is denied, you may file a complaint with the Washington State Attorney General:</p>
@@ -484,11 +562,19 @@
                 <li>Online: <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk/make-a-complaint</a></li>
                 <li>Phone: 0303 123 1113</li>
             </ul>
+            <p class="region-only" data-region="JP">If your request is denied, you may appeal by emailing <a href="mailto:privacy@gradual.health">privacy@gradual.health</a> with the subject line "Privacy Request Appeal." If your appeal is denied, you may file a complaint with Japan's Personal Information Protection Commission (PPC):</p>
+            <ul class="region-only" data-region="JP">
+                <li>Online: <a href="https://www.ppc.go.jp/en/">www.ppc.go.jp/en</a></li>
+            </ul>
+            <p class="region-only" data-region="SG">If your request is denied, you may appeal by emailing our Data Protection Officer at <a href="mailto:dpo@gradual.health">dpo@gradual.health</a> with the subject line "Privacy Request Appeal." If your appeal is denied, you may file a complaint with Singapore's Personal Data Protection Commission (PDPC):</p>
+            <ul class="region-only" data-region="SG">
+                <li>Online: <a href="https://www.pdpc.gov.sg/complaints">www.pdpc.gov.sg/complaints</a></li>
+            </ul>
         </section>
 
         <section>
             <h2>12. Children's Privacy</h2>
-            <p>The App is not intended for use by individuals under the age of <span class="region-inline visible" data-region="US">13</span><span class="region-inline" data-region="CA">13</span><span class="region-inline" data-region="GB">13</span>. We do not knowingly collect personal information from children under <span class="region-inline visible" data-region="US">13</span><span class="region-inline" data-region="CA">13</span><span class="region-inline" data-region="GB">13</span>.</p>
+            <p>The App is not intended for use by individuals under the age of 16. We do not knowingly collect personal information from children under 16.</p>
         </section>
 
         <!-- Canada: Accountability (PIPEDA requirement) -->
@@ -505,9 +591,23 @@
             <p><strong>Lawton Labs</strong><br>Email: <a href="mailto:privacy@gradual.health">privacy@gradual.health</a></p>
         </section>
 
+        <!-- Japan: Business Operator (APPI requirement) -->
+        <section class="region-only" data-region="JP">
+            <h2>12a. Business Operator</h2>
+            <p>The business operator handling your personal information under APPI is:</p>
+            <p><strong>Lawton Labs</strong><br>Email: <a href="mailto:privacy@gradual.health">privacy@gradual.health</a></p>
+        </section>
+
+        <!-- Singapore: Data Protection Officer (PDPA requirement) -->
+        <section class="region-only" data-region="SG">
+            <h2>12a. Data Protection Officer</h2>
+            <p>As required by the PDPA, we have designated a Data Protection Officer (DPO). For any questions or concerns about our data protection practices, or to exercise your rights under the PDPA, please contact:</p>
+            <p><strong>Data Protection Officer — Lawton Labs</strong><br>Email: <a href="mailto:dpo@gradual.health">dpo@gradual.health</a></p>
+        </section>
+
         <section>
             <h2>13. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of material changes through the App. For changes that materially affect how we collect, use, or share your <span class="region-inline visible" data-region="US">consumer health data</span><span class="region-inline" data-region="CA">personal information</span><span class="region-inline" data-region="GB">personal data</span>, we will obtain your consent before the changes take effect.</p>
+            <p>We may update this Privacy Policy from time to time. We will notify you of material changes through the App. For changes that materially affect how we collect, use, or share your <span class="region-inline visible" data-region="US">consumer health data</span><span class="region-inline" data-region="CA">personal information</span><span class="region-inline" data-region="GB">personal data</span><span class="region-inline" data-region="JP">personal information</span><span class="region-inline" data-region="SG">personal data</span>, we will obtain your consent before the changes take effect.</p>
         </section>
 
         <section>
@@ -540,6 +640,12 @@
                     }
                     if (tz.startsWith('Europe/London')) {
                         return 'GB';
+                    }
+                    if (tz.startsWith('Asia/Tokyo')) {
+                        return 'JP';
+                    }
+                    if (tz.startsWith('Asia/Singapore')) {
+                        return 'SG';
                     }
                 } catch(e) {}
                 return 'US';
