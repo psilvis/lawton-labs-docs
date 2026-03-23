@@ -3,279 +3,1070 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chroma - Health Tracking Reimagined</title>
+    <title>Gradual – Optimize Your Biological Age</title>
+    <meta name="description" content="Gradual tracks your vitals, supplements, and lab results to compute your biological age. One app for longevity.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="icon.png" type="image/png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #1f2937;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0F0F12;
+            color: #fff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Wave background (fixed) ── */
+        .wave-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .wave-bg svg {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            min-width: 1400px;
+            height: 65vh;
+        }
+        .wave-bg .wave-1 { opacity: 0.12; animation: wave-drift 18s ease-in-out infinite alternate; }
+        .wave-bg .wave-2 { opacity: 0.07; animation: wave-drift 22s ease-in-out infinite alternate-reverse; }
+        .wave-bg .wave-3 { opacity: 0.04; animation: wave-drift 26s ease-in-out infinite alternate; height: 50vh; }
+
+        @keyframes wave-drift {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-25%); }
+        }
+
+        /* ── Ambient orbs ── */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(67,56,202,0.18), transparent 70%);
+            top: -200px; right: -200px;
+            animation: orb-float-1 14s ease-in-out infinite;
+        }
+        .orb-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(99,102,241,0.14), transparent 70%);
+            bottom: 10%; left: -150px;
+            animation: orb-float-2 18s ease-in-out infinite;
+        }
+        .orb-3 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(79,70,229,0.10), transparent 70%);
+            top: 50%; right: 10%;
+            animation: orb-float-1 20s ease-in-out infinite reverse;
+        }
+
+        @keyframes orb-float-1 {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(30px, -40px) scale(1.05); }
+            100% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+        @keyframes orb-float-2 {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(-30px, 30px) scale(1.08); }
+            100% { transform: translate(20px, -20px) scale(0.96); }
+        }
+
+        /* ── Layout ── */
+        .page { position: relative; z-index: 1; }
+
+        section {
+            padding: 80px 24px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ── Scroll animations ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        /* ── Hero ── */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 40px 24px;
             text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
         }
 
-        .logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 24px;
-            margin: 0 auto 24px;
-            box-shadow: 0 8px 32px rgba(46, 91, 255, 0.35);
+        .hero-inner {
+            max-width: 800px;
         }
 
-        h1 {
-            font-size: 42px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
+        .hero-logo {
+            width: 88px;
+            height: 88px;
+            border-radius: 22px;
+            margin-bottom: 32px;
+            box-shadow: 0 0 60px rgba(46,91,255,0.3), 0 0 120px rgba(46,91,255,0.1);
+            animation: logo-glow 4s ease-in-out infinite alternate;
+        }
+        @keyframes logo-glow {
+            0%   { box-shadow: 0 0 60px rgba(46,91,255,0.3), 0 0 120px rgba(46,91,255,0.1); }
+            100% { box-shadow: 0 0 80px rgba(46,91,255,0.4), 0 0 160px rgba(139,92,246,0.15); }
         }
 
-        .tagline {
-            font-size: 18px;
-            color: #94a3b8;
-            margin-bottom: 48px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 32px;
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.05;
             margin-bottom: 24px;
         }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #a5b4fc 0%, #818cf8 50%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-        .card h2 {
-            color: #ffffff;
-            font-size: 16px;
+        .hero-sub {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: rgba(255,255,255,0.55);
+            line-height: 1.6;
+            max-width: 520px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff;
+            color: #0F0F12;
             font-weight: 600;
-            margin-bottom: 20px;
+            font-size: 16px;
+            padding: 16px 32px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hero-cta:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(255,255,255,0.15);
+        }
+        .hero-cta:active { transform: scale(0.98); }
+        .hero-cta svg { width: 22px; height: 22px; }
+
+        .hero-badge {
+            margin-top: 24px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Stats bar ── */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            padding: 48px 24px;
+            border-top: none;
+            border-bottom: none;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #2E5BFF, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 4px;
+            font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        /* ── Feature sections ── */
+        .feature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            padding: 100px 24px;
+        }
+        .feature-section.reverse { direction: rtl; }
+        .feature-section.reverse > * { direction: ltr; }
+
+        .feature-text { max-width: 440px; }
+
+        .feature-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #2E5BFF;
+            margin-bottom: 16px;
         }
 
-        .link {
+        .feature-title {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .feature-desc {
+            font-size: 16px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+        }
+
+        /* ── Phone mockup ── */
+        .phone-mockup {
+            width: 280px;
+            margin: 0 auto;
+            background: #1A1A1F;
+            border-radius: 36px;
+            border: 3px solid #2A2A30;
+            padding: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(46,91,255,0.08);
+            transition: transform 0.4s ease;
+        }
+        .phone-mockup:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .phone-screen {
+            background: #0F0F12;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 9 / 16;
+            position: relative;
+        }
+
+        /* ── Mockup: Gradual Age ── */
+        .mockup-age {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 32px 20px;
+            background: linear-gradient(180deg, #0F0F12 0%, #111118 100%);
+        }
+        .mockup-age-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 12px;
+        }
+        .mockup-age-ring {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 4px solid rgba(46,91,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 16px;
+        }
+        .mockup-age-ring::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: #2E5BFF;
+            border-right-color: #2E5BFF;
+            border-bottom-color: #8B5CF6;
+            animation: ring-spin 8s linear infinite;
+        }
+        @keyframes ring-spin {
+            to { transform: rotate(360deg); }
+        }
+        .mockup-age-value {
+            font-size: 44px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+        .mockup-age-unit {
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+        }
+        .mockup-age-delta {
+            font-size: 13px;
+            color: #34D399;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .mockup-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .mockup-metric {
+            background: rgba(255,255,255,0.04);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+        .mockup-metric-val {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .mockup-metric-lbl {
+            font-size: 9px;
+            color: rgba(255,255,255,0.35);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* ── Mockup: Labs ── */
+        .mockup-labs {
+            padding: 24px 16px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(180deg, #0F0F12 0%, #111118 100%);
+        }
+        .mockup-labs-header {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .mockup-labs-sub {
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 16px;
+        }
+        .mockup-lab-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.03);
             border-radius: 12px;
-            color: #ffffff;
-            text-decoration: none;
-            transition: all 0.2s ease;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255,255,255,0.04);
         }
-
-        .link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+        .mockup-lab-name {
+            font-size: 13px;
+            font-weight: 600;
         }
+        .mockup-lab-right {
+            text-align: right;
+        }
+        .mockup-lab-val {
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .mockup-lab-range {
+            font-size: 9px;
+            color: rgba(255,255,255,0.3);
+            margin-top: 1px;
+        }
+        .lab-optimal { color: #34D399; }
+        .lab-warning { color: #FBBF24; }
+        .lab-high { color: #F87171; }
 
-        .link-content {
+        .mockup-lab-badge {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin-top: 4px;
+        }
+        .badge-optimal { background: rgba(52,211,153,0.15); color: #34D399; }
+        .badge-warning { background: rgba(251,191,36,0.15); color: #FBBF24; }
+
+        /* ── Mockup: Supplements ── */
+        .mockup-supps {
+            padding: 24px 16px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(180deg, #0F0F12 0%, #111118 100%);
+        }
+        .mockup-supps-header {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .mockup-supps-sub {
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 16px;
+        }
+        .mockup-supp-item {
             display: flex;
             align-items: center;
             gap: 12px;
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255,255,255,0.04);
         }
-
-        .link-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #2E5BFF 0%, #8B5CF6 100%);
+        .mockup-supp-icon {
+            width: 36px;
+            height: 36px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .supp-orange { background: rgba(251,146,60,0.15); }
+        .supp-blue { background: rgba(96,165,250,0.15); }
+        .supp-green { background: rgba(74,222,128,0.15); }
+        .supp-purple { background: rgba(167,139,250,0.15); }
+        .supp-yellow { background: rgba(250,204,21,0.15); }
+        .mockup-supp-info { flex: 1; min-width: 0; }
+        .mockup-supp-name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .mockup-supp-dose {
+            font-size: 10px;
+            color: rgba(255,255,255,0.35);
+            margin-top: 1px;
+        }
+        .mockup-supp-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .mockup-supp-check.done {
+            border-color: #34D399;
+            background: rgba(52,211,153,0.15);
+        }
+        .mockup-supp-check.done::after {
+            content: '✓';
+            color: #34D399;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .mockup-supp-streak {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 16px;
+            padding: 10px;
+            background: rgba(46,91,255,0.08);
+            border-radius: 10px;
+        }
+        .mockup-supp-streak-text {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+        }
+        .mockup-supp-streak-val {
+            font-weight: 700;
+            color: #2E5BFF;
         }
 
-        .link-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
+        /* ── Value props grid ── */
+        .values-section {
+            padding: 100px 24px;
+        }
+        .values-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .values-header h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .values-header p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.45);
+            max-width: 440px;
+            margin: 0 auto;
         }
 
-        .link-text {
-            font-weight: 500;
-            font-size: 15px;
-        }
-
-        .link-arrow {
-            color: #64748b;
-        }
-
-        .link-arrow svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .features {
+        .values-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-bottom: 48px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
-        .feature {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 20px 16px;
+        .value-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 32px 24px;
+            transition: transform 0.3s, border-color 0.3s, background 0.3s;
+        }
+        .value-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(46,91,255,0.2);
+            background: rgba(255,255,255,0.05);
         }
 
-        .feature-icon {
-            font-size: 28px;
+        .value-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .vi-blue { background: rgba(46,91,255,0.12); }
+        .vi-violet { background: rgba(139,92,246,0.12); }
+        .vi-green { background: rgba(52,211,153,0.12); }
+        .vi-coral { background: rgba(255,82,82,0.12); }
+        .vi-yellow { background: rgba(255,215,0,0.12); }
+        .vi-lime { background: rgba(198,255,0,0.12); }
+
+        .value-card h3 {
+            font-size: 17px;
+            font-weight: 700;
             margin-bottom: 8px;
         }
+        .value-card p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.6;
+        }
 
-        .feature-text {
-            color: #94a3b8;
-            font-size: 13px;
+        /* ── CTA section ── */
+        .cta-section {
+            text-align: center;
+            padding: 120px 24px;
+        }
+        .cta-section h2 {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+        }
+        .cta-section .cta-sub {
+            font-size: 17px;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 40px;
+        }
+
+        /* ── Bottom links (support/legal) ── */
+        .bottom-links {
+            padding: 0 24px 60px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .bottom-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 16px;
+        }
+        .bottom-card h3 {
+            color: rgba(255,255,255,0.5);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+        .bottom-links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .bottom-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
             font-weight: 500;
+            transition: all 0.2s;
+        }
+        .bottom-link:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(255,255,255,0.12);
+            transform: translateY(-1px);
+        }
+        .bottom-link-arrow {
+            color: rgba(255,255,255,0.25);
+            font-size: 18px;
         }
 
+        /* ── Footer ── */
         footer {
-            color: #475569;
-            font-size: 13px;
-            margin-top: 48px;
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
         }
-
+        footer p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.25);
+        }
         footer a {
-            color: #64748b;
+            color: rgba(255,255,255,0.35);
             text-decoration: none;
         }
+        footer a:hover { color: rgba(255,255,255,0.6); }
 
-        footer a:hover {
-            color: #94a3b8;
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .feature-section {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                padding: 60px 24px;
+            }
+            .feature-section.reverse { direction: ltr; }
+            .feature-text { max-width: 100%; }
+            .phone-mockup { width: 240px; }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .stats-bar {
+                gap: 32px;
+            }
+            .stat-number { font-size: 32px; }
+
+            section { padding: 60px 24px; }
         }
 
-        @media (max-width: 640px) {
-            h1 {
-                font-size: 36px;
-            }
-
-            .tagline {
-                font-size: 16px;
-            }
-
-            .card {
-                padding: 24px;
-            }
+        @media (max-width: 480px) {
+            .hero { padding: 100px 20px 60px; }
+            .phone-mockup { width: 220px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="icon.png" alt="Chroma" class="logo">
 
-        <h1>Chroma</h1>
-        <p class="tagline">Health tracking reimagined</p>
+    <!-- Wave background — matches icon wave shape -->
+    <div class="wave-bg">
+        <svg class="wave-1" viewBox="0 0 1440 400" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="wg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1e1b4b"/>
+                    <stop offset="100%" stop-color="#4338ca"/>
+                </linearGradient>
+            </defs>
+            <path d="M0,280 C200,320,400,180,700,120 C1000,60,1200,200,1440,160 L1440,400 L0,400Z" fill="url(#wg1)"/>
+        </svg>
+        <svg class="wave-2" viewBox="0 0 1440 400" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="wg2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#312e81"/>
+                    <stop offset="100%" stop-color="#6366f1"/>
+                </linearGradient>
+            </defs>
+            <path d="M0,240 C300,340,500,100,800,160 C1100,220,1300,120,1440,200 L1440,400 L0,400Z" fill="url(#wg2)"/>
+        </svg>
+        <svg class="wave-3" viewBox="0 0 1440 400" preserveAspectRatio="none">
+            <path d="M0,300 C360,200,720,320,1080,240 C1260,200,1380,280,1440,260 L1440,400 L0,400Z" fill="#4f46e5"/>
+        </svg>
+    </div>
 
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <div class="feature-text">Balance Score</div>
+    <!-- Ambient orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="page">
+
+        <!-- ════════ HERO ════════ -->
+        <section class="hero">
+            <div class="hero-inner">
+                <img src="icon.png" alt="Gradual" class="hero-logo reveal">
+                <h1 class="reveal reveal-delay-1">
+                    Optimize your<br><span class="gradient-text">biological age</span>
+                </h1>
+                <p class="hero-sub reveal reveal-delay-2">
+                    Track your vitals, supplements, and lab results — all in one place. Gradual computes your biological age so you can see what's working.
+                </p>
+                <a href="https://apps.apple.com/app/gradual-health/id6759505043" class="hero-cta reveal reveal-delay-3">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Download on the App Store
+                </a>
+                <p class="hero-badge reveal reveal-delay-4">Health insights backed by peer-reviewed research</p>
             </div>
-            <div class="feature">
-                <div class="feature-icon">🧬</div>
-                <div class="feature-text">Lab Tracking</div>
+        </section>
+
+        <!-- ════════ STATS BAR ════════ -->
+        <div class="stats-bar">
+            <div class="stat reveal">
+                <div class="stat-number" data-count="16">0</div>
+                <div class="stat-label">Health Metrics</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">💊</div>
-                <div class="feature-text">Supplements</div>
+            <div class="stat reveal reveal-delay-1">
+                <div class="stat-number" data-count="100">0</div>
+                <div class="stat-label">Lab Biomarkers</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <div class="feature-text">Privacy-First</div>
+            <div class="stat reveal reveal-delay-2">
+                <div class="stat-number" data-count="5">0</div>
+                <div class="stat-label">Vitality Dimensions</div>
             </div>
         </div>
 
-        <div class="card" style="margin-bottom: 16px;">
-            <h2>Support</h2>
-            <div class="links">
-                <a href="support.html" class="link">
-                    <div class="link-content">
-                        <div class="link-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
-                            </svg>
+        <!-- ════════ FEATURE 1: Gradual Age ════════ -->
+        <div class="container">
+            <section class="feature-section">
+                <div class="feature-text reveal">
+                    <div class="feature-label">Biological Age</div>
+                    <h2 class="feature-title">Know your <em>real</em> age</h2>
+                    <p class="feature-desc">
+                        Gradual computes a composite biological age from your cardiovascular fitness, strength, recovery, and lab results. Watch it improve as your habits compound.
+                    </p>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="mockup-age">
+                                <div class="mockup-age-label">Gradual Age</div>
+                                <div class="mockup-age-ring">
+                                    <div>
+                                        <div class="mockup-age-value">27</div>
+                                        <div class="mockup-age-unit">years</div>
+                                    </div>
+                                </div>
+                                <div class="mockup-age-delta">↓ 4.2 yrs below actual</div>
+                                <div class="mockup-metrics">
+                                    <div class="mockup-metric">
+                                        <div class="mockup-metric-val">52</div>
+                                        <div class="mockup-metric-lbl">VO2 Max</div>
+                                    </div>
+                                    <div class="mockup-metric">
+                                        <div class="mockup-metric-val">48</div>
+                                        <div class="mockup-metric-lbl">HRV</div>
+                                    </div>
+                                    <div class="mockup-metric">
+                                        <div class="mockup-metric-val">58</div>
+                                        <div class="mockup-metric-lbl">RHR</div>
+                                    </div>
+                                    <div class="mockup-metric">
+                                        <div class="mockup-metric-val">7.4h</div>
+                                        <div class="mockup-metric-lbl">Sleep</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <span class="link-text">Get Help</span>
                     </div>
-                    <div class="link-arrow">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                        </svg>
+                </div>
+            </section>
+
+            <!-- ════════ FEATURE 2: Lab Tracking ════════ -->
+            <section class="feature-section reverse">
+                <div class="feature-text reveal">
+                    <div class="feature-label">Lab Import</div>
+                    <h2 class="feature-title">Drop a PDF.<br>See everything.</h2>
+                    <p class="feature-desc">
+                        Upload your lab report and AI extracts every biomarker instantly. Track trends over time with optimal ranges backed by peer-reviewed research.
+                    </p>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="mockup-labs">
+                                <div class="mockup-labs-header">Lab Results</div>
+                                <div class="mockup-labs-sub">Quest Diagnostics · Mar 2026</div>
+                                <div class="mockup-lab-item">
+                                    <div>
+                                        <div class="mockup-lab-name">Vitamin D</div>
+                                        <span class="mockup-lab-badge badge-optimal">Optimal</span>
+                                    </div>
+                                    <div class="mockup-lab-right">
+                                        <div class="mockup-lab-val lab-optimal">62 ng/mL</div>
+                                        <div class="mockup-lab-range">40–80</div>
+                                    </div>
+                                </div>
+                                <div class="mockup-lab-item">
+                                    <div>
+                                        <div class="mockup-lab-name">HbA1c</div>
+                                        <span class="mockup-lab-badge badge-optimal">Optimal</span>
+                                    </div>
+                                    <div class="mockup-lab-right">
+                                        <div class="mockup-lab-val lab-optimal">5.1%</div>
+                                        <div class="mockup-lab-range">&lt; 5.7</div>
+                                    </div>
+                                </div>
+                                <div class="mockup-lab-item">
+                                    <div>
+                                        <div class="mockup-lab-name">ApoB</div>
+                                        <span class="mockup-lab-badge badge-warning">Elevated</span>
+                                    </div>
+                                    <div class="mockup-lab-right">
+                                        <div class="mockup-lab-val lab-warning">98 mg/dL</div>
+                                        <div class="mockup-lab-range">&lt; 90</div>
+                                    </div>
+                                </div>
+                                <div class="mockup-lab-item">
+                                    <div>
+                                        <div class="mockup-lab-name">Testosterone</div>
+                                        <span class="mockup-lab-badge badge-optimal">Optimal</span>
+                                    </div>
+                                    <div class="mockup-lab-right">
+                                        <div class="mockup-lab-val lab-optimal">680 ng/dL</div>
+                                        <div class="mockup-lab-range">300–1000</div>
+                                    </div>
+                                </div>
+                                <div class="mockup-lab-item">
+                                    <div>
+                                        <div class="mockup-lab-name">hsCRP</div>
+                                        <span class="mockup-lab-badge badge-optimal">Optimal</span>
+                                    </div>
+                                    <div class="mockup-lab-right">
+                                        <div class="mockup-lab-val lab-optimal">0.4 mg/L</div>
+                                        <div class="mockup-lab-range">&lt; 1.0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- ════════ FEATURE 3: Supplements ════════ -->
+            <section class="feature-section">
+                <div class="feature-text reveal">
+                    <div class="feature-label">Protocol Tracking</div>
+                    <h2 class="feature-title">Build the stack.<br>Keep the streak.</h2>
+                    <p class="feature-desc">
+                        Log your supplements and habits by time of day. Gradual tracks streaks and consistency so you know exactly how dialed-in you are.
+                    </p>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="mockup-supps">
+                                <div class="mockup-supps-header">Morning Protocol</div>
+                                <div class="mockup-supps-sub">5 of 5 completed</div>
+                                <div class="mockup-supp-item">
+                                    <div class="mockup-supp-icon supp-orange">☀️</div>
+                                    <div class="mockup-supp-info">
+                                        <div class="mockup-supp-name">Vitamin D3</div>
+                                        <div class="mockup-supp-dose">5,000 IU</div>
+                                    </div>
+                                    <div class="mockup-supp-check done"></div>
+                                </div>
+                                <div class="mockup-supp-item">
+                                    <div class="mockup-supp-icon supp-blue">🧊</div>
+                                    <div class="mockup-supp-info">
+                                        <div class="mockup-supp-name">Omega-3</div>
+                                        <div class="mockup-supp-dose">2g EPA/DHA</div>
+                                    </div>
+                                    <div class="mockup-supp-check done"></div>
+                                </div>
+                                <div class="mockup-supp-item">
+                                    <div class="mockup-supp-icon supp-green">🍵</div>
+                                    <div class="mockup-supp-info">
+                                        <div class="mockup-supp-name">AG1 Greens</div>
+                                        <div class="mockup-supp-dose">1 scoop</div>
+                                    </div>
+                                    <div class="mockup-supp-check done"></div>
+                                </div>
+                                <div class="mockup-supp-item">
+                                    <div class="mockup-supp-icon supp-purple">💊</div>
+                                    <div class="mockup-supp-info">
+                                        <div class="mockup-supp-name">Magnesium L-Threonate</div>
+                                        <div class="mockup-supp-dose">144mg elemental</div>
+                                    </div>
+                                    <div class="mockup-supp-check done"></div>
+                                </div>
+                                <div class="mockup-supp-item">
+                                    <div class="mockup-supp-icon supp-yellow">🫀</div>
+                                    <div class="mockup-supp-info">
+                                        <div class="mockup-supp-name">Creatine</div>
+                                        <div class="mockup-supp-dose">5g</div>
+                                    </div>
+                                    <div class="mockup-supp-check done"></div>
+                                </div>
+                                <div class="mockup-supp-streak">
+                                    <span class="mockup-supp-streak-text">🔥 <span class="mockup-supp-streak-val">23 day</span> streak</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ════════ VALUE PROPS ════════ -->
+        <section class="values-section">
+            <div class="container">
+                <div class="values-header reveal">
+                    <h2>Everything you need.<br>Nothing you don't.</h2>
+                    <p>Built for people who take longevity seriously — without the complexity.</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card reveal">
+                        <div class="value-icon vi-blue">❤️</div>
+                        <h3>Apple Health Sync</h3>
+                        <p>Steps, heart rate, HRV, sleep, VO2max — all pulled automatically from HealthKit.</p>
+                    </div>
+                    <div class="value-card reveal reveal-delay-1">
+                        <div class="value-icon vi-violet">🧠</div>
+                        <h3>AI Lab Parsing</h3>
+                        <p>Upload any lab PDF. GPT-4 extracts biomarkers with reference ranges and citations.</p>
+                    </div>
+                    <div class="value-card reveal reveal-delay-2">
+                        <div class="value-icon vi-green">📈</div>
+                        <h3>Trend Tracking</h3>
+                        <p>See how every metric changes over time. Spot patterns across months and years.</p>
+                    </div>
+                    <div class="value-card reveal reveal-delay-3">
+                        <div class="value-icon vi-coral">🏋️</div>
+                        <h3>Workout Tracker</h3>
+                        <p>Log lifts with progressive overload tracking. Apple Watch companion included.</p>
+                    </div>
+                    <div class="value-card reveal reveal-delay-4">
+                        <div class="value-icon vi-yellow">🔒</div>
+                        <h3>Privacy-First</h3>
+                        <p>Your data stays on your device. iCloud sync — no third-party servers, ever.</p>
+                    </div>
+                    <div class="value-card reveal reveal-delay-5">
+                        <div class="value-icon vi-lime">🏃</div>
+                        <h3>Strava Connect</h3>
+                        <p>Automatically import runs, rides, and workouts from your Strava feed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════ FINAL CTA ════════ -->
+        <section class="cta-section">
+            <div class="container">
+                <h2 class="reveal">Invest in your <span class="gradient-text">holistic health</span></h2>
+                <p class="cta-sub reveal reveal-delay-1">Your longevity dashboard, in your pocket.</p>
+                <a href="https://apps.apple.com/app/gradual-health/id6759505043" class="hero-cta reveal reveal-delay-2">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Download on the App Store
                 </a>
+            </div>
+        </section>
+
+        <!-- ════════ SUPPORT & LEGAL ════════ -->
+        <div class="bottom-links">
+            <div class="bottom-card">
+                <h3>Support</h3>
+                <div class="bottom-links-list">
+                    <a href="support.html" class="bottom-link">
+                        Get Help <span class="bottom-link-arrow">›</span>
+                    </a>
+                </div>
+            </div>
+            <div class="bottom-card">
+                <h3>Legal</h3>
+                <div class="bottom-links-list">
+                    <a href="privacy-policy.html" class="bottom-link">
+                        Privacy Policy <span class="bottom-link-arrow">›</span>
+                    </a>
+                    <a href="terms-of-service.html" class="bottom-link">
+                        Terms of Service <span class="bottom-link-arrow">›</span>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="card">
-            <h2>Legal</h2>
-            <div class="links">
-                <a href="privacy-policy.html" class="link">
-                    <div class="link-content">
-                        <div class="link-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-                            </svg>
-                        </div>
-                        <span class="link-text">Privacy Policy</span>
-                    </div>
-                    <div class="link-arrow">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                        </svg>
-                    </div>
-                </a>
-                <a href="terms-of-service.html" class="link">
-                    <div class="link-content">
-                        <div class="link-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-                            </svg>
-                        </div>
-                        <span class="link-text">Terms of Service</span>
-                    </div>
-                    <div class="link-arrow">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                        </svg>
-                    </div>
-                </a>
-            </div>
-        </div>
-
+        <!-- ════════ FOOTER ════════ -->
         <footer>
-            <p>&copy; 2025 Lawton Labs</p>
+            <p>&copy; 2026 Lawton Labs</p>
             <p style="margin-top: 8px;"><a href="mailto:lawtonlabsapps@gmail.com">lawtonlabsapps@gmail.com</a></p>
         </footer>
     </div>
+
+    <script>
+        // ── Intersection Observer for scroll reveals ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '-40px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ── Animated counters ──
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.count);
+                    const suffix = target >= 100 ? '+' : '+';
+                    let current = 0;
+                    const step = Math.max(1, Math.floor(target / 40));
+                    const interval = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(interval);
+                        }
+                        el.textContent = current + suffix;
+                    }, 30);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+    </script>
 </body>
 </html>
